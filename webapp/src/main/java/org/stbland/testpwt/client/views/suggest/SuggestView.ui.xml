@@ -2,7 +2,7 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
              xmlns:w="urn:import:fr.putnami.pwt.core.widget.client"
              xmlns:app="urn:import:org.stbland.testpwt.client.widget">
-
+             
     <w:HTMLPanel>
         <w:Heading level="1" text="Suggestion" styleName="page-header"/>
         
@@ -16,6 +16,11 @@
                 <w:Legend>UserInputSuggest</w:Legend>            
                 <w:Label>utilisateur:</w:Label>
                 <app:UserInputSuggest ui:field="userInputSuggest" />
+            </w:Fieldset>
+            <w:Fieldset>
+                <w:Legend>InputSuggest Async</w:Legend>            
+                <w:Label>utilisateur:</w:Label>
+                <w:InputSuggest ui:field="asyncInputSuggest" />
             </w:Fieldset>
         </w:Form>
     </w:HTMLPanel>
