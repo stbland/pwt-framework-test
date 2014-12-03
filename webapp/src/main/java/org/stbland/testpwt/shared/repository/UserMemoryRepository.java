@@ -1,9 +1,10 @@
 package org.stbland.testpwt.shared.repository;
 
 import com.google.common.collect.Lists;
-import java.util.ArrayList;
-import java.util.List;
+
 import org.stbland.testpwt.shared.domain.User;
+
+import java.util.List;
 
 /**
  *
@@ -11,41 +12,41 @@ import org.stbland.testpwt.shared.domain.User;
  */
 public class UserMemoryRepository {
 
-    private static UserMemoryRepository INSTANCE;
+	private static UserMemoryRepository INSTANCE;
 
-    public static UserMemoryRepository get() {
-        if (UserMemoryRepository.INSTANCE == null) {
-            UserMemoryRepository.INSTANCE = new UserMemoryRepository();
-        }
-        return UserMemoryRepository.INSTANCE;
-    }
+	public static UserMemoryRepository get() {
+		if (UserMemoryRepository.INSTANCE == null) {
+			UserMemoryRepository.INSTANCE = new UserMemoryRepository();
+		}
+		return UserMemoryRepository.INSTANCE;
+	}
 
-    private List<User> USERS;
+	private final List<User> users = Lists.newArrayList(
+		new User("Stéphane", "BEAUFORT", "STBEAUFORT"),
+		new User("Sabine", "DUBREUIL"),
+		new User("Gilles", "PLESSY"),
+		new User("Fabien", "BRUNACCI"),
+		new User("Odile", "VUILLAUME"),
+		new User("Julien", "PARNY"),
+		new User("Olivia", "PARNY-BEAUFORT", "OPARNY"),
+		new User("Caroline", "THIEBAUD-BEAUFORT", "CTHIEBAUD"),
+		new User("Julien", "THIEBAUD"),
+		new User("Etan", "THIEBAUD"),
+		new User("Tristan", "THIEBAUD"),
+		new User("Eliott", "THIEBAUD"),
+		new User("Sarah", "PARNY"),
+		new User("Lily", "PARNY"),
+		new User("Sonia", "BEAUFORT", "SOBEAUFORT"),
+		new User("Patrice", "BEAUFORT"),
+		new User("Vincent", "VOISIN"),
+		new User("Nadège", "BRUNACCI-MICHELET", "NBRUNACCI")
+		);
 
-    private UserMemoryRepository() {
-        USERS = new ArrayList<User>(15);
-        USERS.add(new User("Stéphane", "BEAUFORT", "STBEAUFORT"));
-        USERS.add(new User("Sabine", "DUBREUIL"));
-        USERS.add(new User("Gilles", "PLESSY"));
-        USERS.add(new User("Fabien", "BRUNACCI"));
-        USERS.add(new User("Odile", "VUILLAUME"));
-        USERS.add(new User("Julien", "PARNY"));
-        USERS.add(new User("Olivia", "PARNY-BEAUFORT", "OPARNY"));
-        USERS.add(new User("Caroline", "THIEBAUD-BEAUFORT", "CTHIEBAUD"));
-        USERS.add(new User("Julien", "THIEBAUD"));
-        USERS.add(new User("Etan", "THIEBAUD"));
-        USERS.add(new User("Tristan", "THIEBAUD"));
-        USERS.add(new User("Eliott", "THIEBAUD"));
-        USERS.add(new User("Sarah", "PARNY"));
-        USERS.add(new User("Lily", "PARNY"));
-        USERS.add(new User("Sonia", "BEAUFORT", "SOBEAUFORT"));
-        USERS.add(new User("Patrice", "BEAUFORT"));
-        USERS.add(new User("Vincent", "VOISIN"));
-        USERS.add(new User("Nadège","BRUNACCI-MICHELET", "NBRUNACCI"));
-    }
+	private UserMemoryRepository() {
+	}
 
-    public List<User> getUserList() {
-        return Lists.newArrayList(this.USERS);
-    }
+	public List<User> getUserList() {
+		return Lists.newArrayList(this.users);
+	}
 
 }
