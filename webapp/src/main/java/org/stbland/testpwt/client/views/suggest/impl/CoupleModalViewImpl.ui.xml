@@ -10,11 +10,11 @@
         <pwt:Form ui:field="coupleEditor" layout="HORIZONTAL">
             
             <pwt:FormGroup path="user1" ui:field="user1FormGroup" >
-                <app:UserInputSuggest ui:field="user1InputSuggest" />
+                <pwt:InputSuggest ui:field="user1InputSuggest" />
             </pwt:FormGroup>
             
             <pwt:FormGroup path="user2" >
-                <app:UserInputSuggest ui:field="user2InputSuggest" />
+                <pwt:InputSuggest ui:field="user2InputSuggest" />
             </pwt:FormGroup>            
 
             <pwt:Footer>
