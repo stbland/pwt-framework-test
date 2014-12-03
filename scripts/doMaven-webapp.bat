@@ -2,7 +2,7 @@
 rem DEBUT Configuration
 set PROJECT_SHORTNAME=test-pwt-webapp
 rem FIN Configuration
-set POMFILE=..\test-pwt-webapp\pom.xml
+set POMFILE=..\webapp\pom.xml
 set DOMAVENARGS=%*
 set JAVA_HOME=%JDK7_HOME%
 set PATH=%JAVA_HOME%\bin;%PATH%
