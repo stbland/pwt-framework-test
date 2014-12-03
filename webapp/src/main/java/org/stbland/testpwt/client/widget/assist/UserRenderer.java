@@ -18,11 +18,17 @@ public class UserRenderer extends AbstractRenderer<User> implements Highlighter<
 
 	@Override
 	public String render(User user) {
+                if (user==null) {
+                    return "";
+                }
 		return user.getFirstname() + " " + user.getLastname() + " (" + user.getLogin() + ")";
 	}
 
 	@Override
 	public String highlight(User user, String query) {
+                if (user==null) {
+                    return "";
+                }
 		return user.getFirstname() + ' ' + renderHighlight(user.getLastname(), query) + " ("
 			+ renderHighlight(user.getLogin(), query) + ")";
 	}

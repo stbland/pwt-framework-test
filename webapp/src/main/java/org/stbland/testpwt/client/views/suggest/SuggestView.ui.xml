@@ -9,6 +9,8 @@
     <pwt:HTMLPanel>
         <pwt:Heading level="1" text="Suggestion" styleName="page-header"/>
         
+        <pwt:Heading level="2" text="User"/>
+        
         <pwt:Form layout="BASIC">      
             <pwt:Fieldset>
                 <pwt:Legend>InputSuggest</pwt:Legend>
@@ -18,12 +20,11 @@
             <pwt:Fieldset>
                 <pwt:Legend>UserInputSuggest</pwt:Legend>            
                 <pwt:Label>utilisateur:</pwt:Label>
-                <app:UserInputSuggest ui:field="userInputSuggest" />
-<<<<<<< .mine
+                <pwt:InputSuggest ui:field="asyncInputSuggest" />
             </pwt:Fieldset>
         </pwt:Form>
         
-        <pwt:Heading level="1" text="Couple" styleName="page-header"/>
+        <pwt:Heading level="2" text="Couple"/>
         
         <pwt:Form  ui:field="coupleEditor" layout="BASIC">    
             <pwt:FormGroup path="user1" readonly="true">
@@ -38,24 +39,5 @@
         </pwt:Form>    
         
     </pwt:HTMLPanel>
-=======
-            </w:Fieldset>
-            <w:Fieldset>
-                <w:Legend>InputSuggest Async</w:Legend>            
-                <w:Label>utilisateur:</w:Label>
-                <w:InputSuggest ui:field="asyncInputSuggest" />
-            </w:Fieldset>
-        </w:Form>
-    </w:HTMLPanel>
 
-
-
-
-
-
-
-
-
-
->>>>>>> .theirs
 </ui:UiBinder>
