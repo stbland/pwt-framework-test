@@ -1,0 +1,22 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:w="urn:import:fr.putnami.pwt.core.widget.client"
+             xmlns:app="urn:import:org.stbland.testpwt.client.widget">
+
+    <w:HTMLPanel>
+        <w:Heading level="1" text="Suggestion" styleName="page-header"/>
+        
+        <w:Form layout="BASIC">      
+            <w:Fieldset>
+                <w:Legend>InputSuggest</w:Legend>
+                <w:Label>Mot:</w:Label>
+                <w:InputSuggest ui:field="remoteInputSuggest" />
+            </w:Fieldset>  
+            <w:Fieldset>
+                <w:Legend>UserInputSuggest</w:Legend>            
+                <w:Label>utilisateur:</w:Label>
+                <app:UserInputSuggest ui:field="userInputSuggest" />
+            </w:Fieldset>
+        </w:Form>
+    </w:HTMLPanel>
+</ui:UiBinder>

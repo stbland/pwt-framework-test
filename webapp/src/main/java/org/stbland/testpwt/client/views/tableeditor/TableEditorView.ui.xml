@@ -1,0 +1,40 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:w="urn:import:fr.putnami.pwt.core.widget.client" xmlns:i="urn:import:fr.putnami.pwt.core.widget.incubating" >
+    
+    <ui:with field="constants" type="org.stbland.testpwt.shared.constants.UserViewConstants" />
+    
+    <w:HTMLPanel title="TableEditor">
+        <w:Header ui:field="header">
+            <w:Heading level="1">TableEditor</w:Heading>
+        </w:Header>
+        <w:HTMLPanel ui:field="content">
+            <w:Button ui:field="addButton" iconType="ADD" text="add" type="LINK"/>
+            
+            <w:TableEditor ui:field="userTable" readonly="false">
+                <w:Pagination pageSize="9" />
+                <w:TableOrder />
+                
+                <w:TableColumn path="login" readonly="true">
+                    <w:TableSort />
+                </w:TableColumn>
+                <w:TableColumn path="firstname" readonly="true" >
+                    <w:TableSort />
+                </w:TableColumn>
+            </w:TableEditor>
+
+            <w:Modal ui:field="modal" title="{constants.newUserTitle}" dismissable="true">
+                <w:Form ui:field="userEditor" layout="HORIZONTAL">
+                    <fieldset>
+                        <legend>Utilisateur</legend>
+                        <w:FormGroup path="login" />
+                        <w:FormGroup path="firstname" />                        
+                    </fieldset>
+                    <w:Footer>
+                        <w:Button ui:field="cancelButton" name="cancel" />
+                        <w:FormSubmitButton name="save" size="LARGE" />
+                    </w:Footer>
+                </w:Form>
+            </w:Modal>
+        </w:HTMLPanel>
+    </w:HTMLPanel>
+</ui:UiBinder>

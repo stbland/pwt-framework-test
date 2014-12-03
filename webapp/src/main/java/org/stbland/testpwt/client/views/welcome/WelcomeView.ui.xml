@@ -1,0 +1,14 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:w="urn:import:fr.putnami.pwt.core.widget.client">
+
+    <w:HTMLPanel styleName="container">
+        <w:Heading level="1" text="Accueil" styleName="page-header"/>
+         <w:Container tag="div" styleName="jumbotron text-center">
+            <w:GridRow>
+                <w:GridColumn size="10" offset="1">
+                </w:GridColumn>
+            </w:GridRow>
+        </w:Container>
+    </w:HTMLPanel>
+</ui:UiBinder>

@@ -1,0 +1,133 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+       <groupId>org.stbland.testpwt</groupId>
+        <artifactId>testpwt-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>testpwt-webapp</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <description>Test PWT - Webapp</description>
+
+    <properties>
+        <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+        <gwt.draftCompile>false</gwt.draftCompile>
+        <gwt.module>org.stbland.testpwt.Test</gwt.module>
+    </properties>
+        
+    <profiles>
+        <profile>
+            <id>gwt-codeserver</id>
+            <properties>
+                <gwt.draftCompile>true</gwt.draftCompile>
+                <gwt.module>org.stbland.testpwt.Test_CodeServer</gwt.module>
+            </properties>
+        </profile>
+        
+        <profile>
+            <id>gwt-draft-compile</id>
+            <properties>
+                <gwt.draftCompile>true</gwt.draftCompile>
+            </properties>
+        </profile>        
+               
+    </profiles>
+
+    <dependencies>
+        
+        <!-- junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- pwt -->
+        <!-- Cette dependance doit absoluement etre placee avant celle de GWT -->
+        <dependency>
+            <groupId>fr.putnami.pwt</groupId>
+            <artifactId>pwt</artifactId>
+        </dependency>
+
+        <!-- gwt-user -->
+        <!-- Cette dependance doit absoluement etre placee apres celle de PWT -->
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>                     
+                           
+    </dependencies>
+
+    <build>
+        <!-- Generate compiled stuff in the folder used for developing mode -->
+        <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+
+        <plugins>
+
+            <!-- maven-compiler-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <!-- maven-war-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exploded</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <webappDirectory>${webappDirectory}</webappDirectory>
+                </configuration>
+            </plugin>
+
+            <!-- gwt-maven-plugin -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <runTarget>test.html</runTarget>
+                    <module>${gwt.module}</module>
+                    <hostedWebapp>${webappDirectory}</hostedWebapp>
+                    <draftCompile>${gwt.draftCompile}</draftCompile>                                        
+                    <codeServerWorkDir>${project.build.directory}</codeServerWorkDir>
+                </configuration>
+            </plugin>
+                        
+            <!-- tomcat7-maven-plugin -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <configuration>
+                    <path>${tomcat.path}</path>
+                    <warSourceDirectory>${webappDirectory}</warSourceDirectory>
+                </configuration>
+            </plugin>
+
+        </plugins>
+
+    </build>
+</project>

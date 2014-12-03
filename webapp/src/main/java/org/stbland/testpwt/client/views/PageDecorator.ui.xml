@@ -1,0 +1,42 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:w="urn:import:fr.putnami.pwt.core.widget.client"
+             xmlns:s="urn:import:fr.putnami.pwt.core.security.client.widget">
+
+    <ui:style>
+        .siteHeader {
+        height : 65px;
+        font-size: 30px;
+        background-color:#EEE;
+        }
+        .siteFooter {
+        text-align : center;
+        background-color:#EEE;
+        height: 80px;
+        padding-top: 35px;
+        }
+    </ui:style>
+    <w:HTMLPanel>
+        <w:Header styleName="{style.siteHeader}">
+            <div class="container">
+                <a href="#!Welcome">
+                    Test <small class="hidden-xs">PWT</small>
+                </a>
+            </div>
+        </w:Header>
+        <w:Affix>
+            <w:Navbar position="STATIC_TOP">
+                <w:Brand>
+                    <w:Anchor text="Welcome" link="#!" />
+                </w:Brand>
+                <w:Nav>
+                    <w:NavLink label="Suggestions" link="#!Suggest"/>       
+                    <w:NavLink label="TableEditor" link="#!TableEditor"/>       
+                </w:Nav>
+            </w:Navbar>        
+        </w:Affix>
+
+        <w:OneWidgetPanel tag="div" ui:field="viewContainer"  styleName="container siteContent" />
+
+    </w:HTMLPanel>
+</ui:UiBinder>

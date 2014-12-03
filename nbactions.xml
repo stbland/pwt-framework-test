@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-mvn-install-without-modules</actionName>
+            <displayName>mvn-install-without-modules</displayName>
+            <recursive>false</recursive>
+            <goals>
+                <goal>clean</goal>
+                <goal>install</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-mvn-install</actionName>
+            <displayName>mvn-install</displayName>
+            <goals>
+                <goal>install</goal>
+            </goals>
+        </action>
+    </actions>
