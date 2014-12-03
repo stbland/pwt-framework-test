@@ -11,7 +11,8 @@ import fr.putnami.pwt.core.widget.client.Form;
 import fr.putnami.pwt.core.widget.client.Modal;
 import fr.putnami.pwt.core.widget.client.TableEditor;
 import fr.putnami.pwt.core.widget.client.event.ButtonEvent;
-import org.stbland.testpwt.shared.constants.UserViewConstants;
+import org.stbland.testpwt.client.constants.views.TableEditorViewConstants;
+import org.stbland.testpwt.shared.constants.beans.UserConstants;
 import org.stbland.testpwt.shared.domain.User;
 import org.stbland.testpwt.shared.repository.UserMemoryRepository;
 
@@ -23,11 +24,11 @@ import org.stbland.testpwt.shared.repository.UserMemoryRepository;
 public class TableEditorView extends Composite implements View {
 
     @UiField
-    @Initialize(constantsClass = UserViewConstants.class)
+    @Initialize(constantsClass = TableEditorViewConstants.class)
     Form<User> userEditor;
 
     @UiField
-    @Initialize(constantsClass = UserViewConstants.class)
+    @Initialize(constantsClass = UserConstants.class)
     TableEditor<User> userTable;
 
     @UiField

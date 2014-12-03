@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:pwt="urn:import:fr.putnami.pwt.core.widget.client" xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:app="urn:import:org.stbland.testpwt.client.widget">
+
+    <ui:with field="constants"
+                 type="org.stbland.testpwt.client.constants.views.CoupleModalConstants" />
+    
+    <pwt:Modal ui:field="modal" title="{constants.dialogTitle}" dismissable="true">
+        <pwt:Form ui:field="coupleEditor" layout="HORIZONTAL">
+            
+            <pwt:FormGroup path="user1" ui:field="user1FormGroup" >
+                <app:UserInputSuggest ui:field="user1InputSuggest" />
+            </pwt:FormGroup>
+            
+            <pwt:FormGroup path="user2" >
+                <app:UserInputSuggest ui:field="user2InputSuggest" />
+            </pwt:FormGroup>            
+
+            <pwt:Footer>
+                <pwt:Button ui:field="cancelButton" text="{constants.cancelButton}" />
+                <pwt:FormSubmitButton text="{constants.submitButton}" iconType="SAVE" />
+            </pwt:Footer>
+        </pwt:Form>
+    </pwt:Modal>
+
+</ui:UiBinder>

@@ -9,12 +9,15 @@ import org.stbland.testpwt.shared.domain.User;
  */
 public class UserRenderer extends AbstractRenderer<User> {
 
-    private UserRenderer() {
+    protected UserRenderer() {
         super();
     }
 
     @Override
     public String render(User user) {
+        if ( user == null ) {
+            return "";
+        }
         return user.getFirstname() + " "  +  user.getLastname() + " (" + user.getLogin() + ")";
     }
     

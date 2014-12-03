@@ -1,12 +1,12 @@
-package org.stbland.testpwt.shared.constants;
+package org.stbland.testpwt.client.constants.views.base;
 
-import fr.putnami.pwt.core.editor.shared.constant.ValidationConstants;
+import com.google.gwt.i18n.client.ConstantsWithLookup;
 
 /**
  *
  * @author sbeaufort
  */
-public interface UserViewConstants extends ValidationConstants, UserConstants {
+public interface BaseFormViewConstants extends ConstantsWithLookup {
 
     @DefaultStringValue("Save")
     String saveButton();
@@ -23,9 +23,7 @@ public interface UserViewConstants extends ValidationConstants, UserConstants {
     @DefaultStringValue("Open")
     String openButton();
 
-    @DefaultStringValue("Ajouter")
+    @DefaultStringValue("Add")
     String addButton();
-    
-    	@DefaultStringValue("Ajout d'un utilisateur")
-String newUserTitle();
+
 }

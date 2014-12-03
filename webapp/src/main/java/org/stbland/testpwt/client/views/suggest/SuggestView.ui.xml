@@ -1,22 +1,40 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-             xmlns:w="urn:import:fr.putnami.pwt.core.widget.client"
+             xmlns:pwt="urn:import:fr.putnami.pwt.core.widget.client"
              xmlns:app="urn:import:org.stbland.testpwt.client.widget">
 
-    <w:HTMLPanel>
-        <w:Heading level="1" text="Suggestion" styleName="page-header"/>
+    <ui:with field="constants"
+                 type="org.stbland.testpwt.client.constants.views.SuggestViewConstants" />    
         
-        <w:Form layout="BASIC">      
-            <w:Fieldset>
-                <w:Legend>InputSuggest</w:Legend>
-                <w:Label>Mot:</w:Label>
-                <w:InputSuggest ui:field="remoteInputSuggest" />
-            </w:Fieldset>  
-            <w:Fieldset>
-                <w:Legend>UserInputSuggest</w:Legend>            
-                <w:Label>utilisateur:</w:Label>
+    <pwt:HTMLPanel>
+        <pwt:Heading level="1" text="Suggestion" styleName="page-header"/>
+        
+        <pwt:Form layout="BASIC">      
+            <pwt:Fieldset>
+                <pwt:Legend>InputSuggest</pwt:Legend>
+                <pwt:Label>Mot:</pwt:Label>
+                <pwt:InputSuggest ui:field="remoteInputSuggest" />
+            </pwt:Fieldset>  
+            <pwt:Fieldset>
+                <pwt:Legend>UserInputSuggest</pwt:Legend>            
+                <pwt:Label>utilisateur:</pwt:Label>
                 <app:UserInputSuggest ui:field="userInputSuggest" />
-            </w:Fieldset>
-        </w:Form>
-    </w:HTMLPanel>
+            </pwt:Fieldset>
+        </pwt:Form>
+        
+        <pwt:Heading level="1" text="Couple" styleName="page-header"/>
+        
+        <pwt:Form  ui:field="coupleEditor" layout="BASIC">    
+            <pwt:FormGroup path="user1" readonly="true">
+                <app:UserOutput />
+            </pwt:FormGroup>            
+            <pwt:FormGroup path="user2" readonly="true">
+                <app:UserOutput />
+            </pwt:FormGroup>                        
+            <pwt:Footer>
+                <pwt:Button ui:field="chooseCoupleButton" text="{constants.chooseCoupleButton}" />
+            </pwt:Footer>
+        </pwt:Form>    
+        
+    </pwt:HTMLPanel>
 </ui:UiBinder>
