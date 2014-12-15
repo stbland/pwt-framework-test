@@ -60,6 +60,8 @@ public class SuggestView extends Composite implements View, CouplePresenter {
 		asyncInputSuggest.setRenderer(UserRenderer.get());
 		asyncInputSuggest.setHighlighter(UserRenderer.get());
 		asyncInputSuggest.setOracle(new UserOracle());
+                
+                coupleModalView.setCouplePresenter(this);
 	}
 
 	@UiHandler("chooseCoupleButton")
