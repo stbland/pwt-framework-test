@@ -32,6 +32,7 @@
                 <w:Nav>
                     <w:NavLink label="Suggestions" link="#!Suggest"/>       
                     <w:NavLink label="TableEditor" link="#!TableEditor"/>       
+                    <w:NavLink label="Treeview" link="#!Treeview"/>       
                 </w:Nav>
             </w:Navbar>        
         </w:Affix>
