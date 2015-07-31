@@ -7,6 +7,7 @@ import org.stbland.testpwt.client.views.welcome.WelcomePlace;
 import org.stbland.testpwt.client.views.treeview.TreeviewPlace;
 
 import fr.putnami.pwt.core.inject.client.Module;
+import fr.putnami.pwt.core.inject.client.annotation.ErrorManagmentDescription;
 import fr.putnami.pwt.core.inject.client.annotation.MvpDescription;
 
 @MvpDescription(
@@ -16,7 +17,9 @@ import fr.putnami.pwt.core.inject.client.annotation.MvpDescription;
 		WelcomePlace.class,
 		SuggestView.SuggestPlace.class,
 		TableEditorPlace.class,
-                TreeviewPlace.class})
+        TreeviewPlace.class})
+		TableEditorPlace.class})
+@ErrorManagmentDescription
 public class Main implements Module {
 
 }

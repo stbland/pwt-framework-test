@@ -4,19 +4,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import fr.putnami.pwt.core.editor.client.event.FlushErrorEvent;
-import fr.putnami.pwt.core.editor.client.event.FlushSuccessEvent;
-import fr.putnami.pwt.core.inject.client.annotation.Initialize;
-import fr.putnami.pwt.core.mvp.client.View;
-import fr.putnami.pwt.core.widget.client.Form;
-import fr.putnami.pwt.core.widget.client.FormGroup;
-import fr.putnami.pwt.core.widget.client.InputSuggest;
-import fr.putnami.pwt.core.widget.client.Modal;
-import fr.putnami.pwt.core.widget.client.binder.UiBinderLocalized;
-import fr.putnami.pwt.core.widget.client.event.ButtonEvent;
 import org.stbland.testpwt.client.constants.views.CoupleModalConstants;
 import org.stbland.testpwt.client.presenters.CouplePresenter;
 import org.stbland.testpwt.client.views.suggest.CoupleModalView;
@@ -26,6 +15,19 @@ import org.stbland.testpwt.shared.constants.beans.CoupleConstants;
 import org.stbland.testpwt.shared.domain.Couple;
 import org.stbland.testpwt.shared.domain.User;
 
+import fr.putnami.pwt.core.editor.client.event.FlushErrorEvent;
+import fr.putnami.pwt.core.editor.client.event.FlushSuccessEvent;
+import fr.putnami.pwt.core.inject.client.annotation.Initialize;
+import fr.putnami.pwt.core.inject.client.annotation.InjectResource;
+import fr.putnami.pwt.core.inject.client.annotation.PostConstruct;
+import fr.putnami.pwt.core.inject.client.annotation.Templated;
+import fr.putnami.pwt.core.mvp.client.View;
+import fr.putnami.pwt.core.widget.client.Form;
+import fr.putnami.pwt.core.widget.client.FormGroup;
+import fr.putnami.pwt.core.widget.client.InputSuggest;
+import fr.putnami.pwt.core.widget.client.Modal;
+import fr.putnami.pwt.core.widget.client.event.ButtonEvent;
+
 /**
  * Classe CoupleModalViewImpl
  *
@@ -33,102 +35,87 @@ import org.stbland.testpwt.shared.domain.User;
  *
  * @author sbeaufort
  */
+@Templated
 public class CoupleModalViewImpl extends Composite implements View, CoupleModalView {
 
-    private CouplePresenter couplePresenter;
+	private CouplePresenter couplePresenter;
 
-    interface Binder extends UiBinderLocalized<Modal, CoupleModalViewImpl> {
+	@UiField(provided = true)
+	@InjectResource
+	CoupleModalConstants constants;
 
-        Binder BINDER = GWT.create(Binder.class);
-    }
+	@UiField
+	protected Modal modal;
 
-    @UiField(provided = true)
-    protected final CoupleModalConstants constants = GWT
-            .create(CoupleModalConstants.class);
+	@UiField
+	@Initialize(constantsClass = CoupleConstants.class)
+	protected Form<Couple> coupleEditor;
 
-    @UiField
-    protected Modal modal;
+	@UiField
+	protected FormGroup user1FormGroup;
 
-    @UiField
-    @Initialize(constantsClass = CoupleConstants.class)
-    protected Form<Couple> coupleEditor;
+	@UiField
+	protected InputSuggest<User> user1InputSuggest;
 
-    @UiField
-    protected FormGroup user1FormGroup;
+	@UiField
+	protected InputSuggest<User> user2InputSuggest;
 
-    @UiField
-    protected InputSuggest<User> user1InputSuggest;
+	@PostConstruct
+	void postConstruct() {
+		user1InputSuggest.setRenderer(UserRenderer.get());
+		user1InputSuggest.setHighlighter(UserRenderer.get());
+		user1InputSuggest.setOracle(new UserOracle());
 
-    @UiField
-    protected InputSuggest<User> user2InputSuggest;
+		user2InputSuggest.setRenderer(UserRenderer.get());
+		user2InputSuggest.setHighlighter(UserRenderer.get());
+		user2InputSuggest.setOracle(new UserOracle());
+	}
 
-    private boolean showing;
+	@Override
+	public void show() {
 
-    public CoupleModalViewImpl() {
-        Binder.BINDER.createAndBindUi(this);
+		final Couple couple = new Couple();
+		coupleEditor.edit(couple);
 
-        user1InputSuggest.setRenderer(UserRenderer.get());
-        user1InputSuggest.setHighlighter(UserRenderer.get());
-        user1InputSuggest.setOracle(new UserOracle());
+		modal.show();
+		user1FormGroup.setFocus(true);
+	}
 
-        user2InputSuggest.setRenderer(UserRenderer.get());
-        user2InputSuggest.setHighlighter(UserRenderer.get());
-        user2InputSuggest.setOracle(new UserOracle());
-    }
+	@Override
+	public void setCouplePresenter(CouplePresenter couplePresenter) {
+		this.couplePresenter = couplePresenter;
+	}
 
-    @Override
-    public void show() {
+	protected void hide() {
+		modal.hide();
+	}
 
-        final Couple couple = new Couple();
-        coupleEditor.edit(couple);
+	@UiHandler("cancelButton")
+	public void onCancelButton(ButtonEvent event) {
+		hide();
+	}
 
-        if (!this.showing) {
-            RootPanel.get().add(modal);
-            modal.show();
-            user1FormGroup.setFocus(true);
-        }
+	@UiHandler("coupleEditor")
+	void onCoupleEditorFlushSuccess(FlushSuccessEvent event) {
+		hide();
 
-        this.showing = true;
-    }
+		Couple couple = event.getValue();
+		GWT.log("onCoupleEditorFlushSuccess value: " + couple.toString());
 
-    @Override
-    public void setCouplePresenter(CouplePresenter couplePresenter) {
-        this.couplePresenter = couplePresenter;
-    }
+		if (couplePresenter != null) {
+			couplePresenter.setCouple(couple);
+		}
+	}
 
-    protected void hide() {
-        if (this.showing) {
-            modal.hide();
-            showing = false;
-        }
-    }
+	@UiHandler("coupleEditor")
+	void onCoupleEditorFlushError(FlushErrorEvent event) {
+		GWT.log("onCoupleEditorFlushSuccess valueEdited: " + event.getValueEdited().toString());
+		GWT.log("onCoupleEditorFlushSuccess valueFlushed: " + event.getValueFlushed().toString());
+	}
 
-    @UiHandler("cancelButton")
-    public void onCancelButton(ButtonEvent event) {
-        hide();
-    }
-
-    @UiHandler("coupleEditor")
-    void onCoupleEditorFlushSuccess(FlushSuccessEvent event) {
-        hide();
-
-        Couple couple = event.getValue();
-        GWT.log("onCoupleEditorFlushSuccess value: " + couple.toString());
-
-        if (couplePresenter != null) {
-            couplePresenter.setCouple(couple);
-        }
-    }
-
-    @UiHandler("coupleEditor")
-    void onCoupleEditorFlushError(FlushErrorEvent event) {
-        GWT.log("onCoupleEditorFlushSuccess valueEdited: " + event.getValueEdited().toString());
-        GWT.log("onCoupleEditorFlushSuccess valueFlushed: " + event.getValueFlushed().toString());
-    }
-
-    @Override
-    public Widget asWidget() {
-        return modal;
-    }
+	@Override
+	public Widget asWidget() {
+		return modal;
+	}
 
 }
