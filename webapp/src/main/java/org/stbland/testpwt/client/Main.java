@@ -17,8 +17,7 @@ import fr.putnami.pwt.core.inject.client.annotation.MvpDescription;
 		WelcomePlace.class,
 		SuggestView.SuggestPlace.class,
 		TableEditorPlace.class,
-        TreeviewPlace.class})
-		TableEditorPlace.class})
+		TreeviewPlace.class})
 @ErrorManagmentDescription
 public class Main implements Module {
 

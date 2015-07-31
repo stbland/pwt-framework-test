@@ -5,11 +5,10 @@
     <parent>
        <groupId>org.stbland.testpwt</groupId>
         <artifactId>testpwt-parent</artifactId>
-        <version>0.3-SNAPSHOT</version>
+        <version>0.4-SNAPSHOT</version>
     </parent>
 
     <artifactId>testpwt-webapp</artifactId>
-    <version>0.4-SNAPSHOT</version>
     <packaging>war</packaging>
     <description>Test PWT - Webapp</description>
 
